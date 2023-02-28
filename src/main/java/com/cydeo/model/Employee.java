@@ -1,5 +1,7 @@
 package com.cydeo.model;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,10 +14,20 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class Employee {
 
+    // @NotNull --> Field shouldn't be null
+    // @NotEmpty --> Field shouldn't be ""
+    // @NotBlank --> Field shouldn't be "            "
+
+    // @NotNull --> @NotNull
+    // @NotEmpty --> @NotNull + NotEmpty
+    // @NotBlank --> @NotNull + NotEmpty + NotBlank
+
+    @NotBlank
+    @Size(max = 12, min = 2)
     private String firstName;
     private String lastName;
 
-    // Thymeleaf accepts yyyy-MM-dd, but LocalDate accepts mm-dd-yyyy so we can use @DateTimeFormat annotation
+    // Thymeleaf accepts yyyy-MM-dd, but LocalDate accepts mm-dd-yyyy, so we can use @DateTimeFormat annotation
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthday;
     private String email;
